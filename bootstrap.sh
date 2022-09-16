@@ -8,11 +8,11 @@
 # STEP 1. Change these values to your liking.
 
 PLUGIN_NAME="$(basename $(dirname $(realpath $0)))"  # name of current directory
-PLUGIN_TITLE='My ChRIS Plugin'
-SCRIPT_NAME='commandname'
-DESCRIPTION='A ChRIS plugin to do something awesome'
+PLUGIN_TITLE='A ChRIS statsmodels plugin app'
+SCRIPT_NAME='statsmodels'
+DESCRIPTION='A ChRIS plugin to perform statsmodels operations'
 ORGANIZATION='FNNDSC'
-EMAIL='dev@babyMRI.org'
+EMAIL='dbassey@redhat.com'
 
 # Enables automatic testing, building, and release.
 # You are advised to review the file .github/workflows/ci.yml
@@ -21,7 +21,7 @@ ENABLE_CI=yes
 
 # STEP 2. Uncomment the line below.
 
-#READY=yes
+READY=yes
 
 # STEP 3. Run: ./bootstrap.sh
 
