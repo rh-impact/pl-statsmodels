@@ -11,11 +11,18 @@ __version__ = __pkg.version
 
 
 DISPLAY_TITLE = r"""
-ChRIS Plugin Template Title
+       _            _        _                           _      _     
+      | |          | |      | |                         | |    | |    
+ _ __ | |______ ___| |_ __ _| |_ ___ _ __ ___   ___   __| | ___| |___ 
+| '_ \| |______/ __| __/ _` | __/ __| '_ ` _ \ / _ \ / _` |/ _ \ / __|
+| |_) | |      \__ \ || (_| | |_\__ \ | | | | | (_) | (_| |  __/ \__ \
+| .__/|_|      |___/\__\__,_|\__|___/_| |_| |_|\___/ \__,_|\___|_|___/
+| |                                                                   
+|_|                                                                   
 """
 
 
-parser = ArgumentParser(description='cli description',
+parser = ArgumentParser(description='A ChRIS plugin to perform statsmodels operations',
                         formatter_class=ArgumentDefaultsHelpFormatter)
 parser.add_argument('-n', '--name', default='foo',
                     help='argument which sets example output file name')
@@ -26,7 +33,7 @@ parser.add_argument('-V', '--version', action='version',
 # documentation: https://fnndsc.github.io/chris_plugin/chris_plugin.html#chris_plugin
 @chris_plugin(
     parser=parser,
-    title='My ChRIS plugin',
+    title='A ChRIS statsmodels plugin app',
     category='',                 # ref. https://chrisstore.co/plugins
     min_memory_limit='100Mi',    # supported units: Mi, Gi
     min_cpu_limit='1000m',       # millicores, e.g. "1000m" = 1 CPU core
