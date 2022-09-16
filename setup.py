@@ -1,18 +1,18 @@
 from setuptools import setup
 
 setup(
-    name='chris-plugin-template',
+    name='statsmodels',
     version='1.0.0',
-    description='A ChRIS DS plugin template',
+    description='A ChRIS plugin to perform statsmodels operations',
     author='FNNDSC',
-    author_email='dev@babyMRI.org',
-    url='https://github.com/FNNDSC/python-chrisapp-template',
-    py_modules=['app'],
+    author_email='dbassey@redhat.com',
+    url='https://github.com/rh-impact/pl-statsmodels',
+    py_modules=['statsmodels'],
     install_requires=['chris_plugin'],
     license='MIT',
     entry_points={
         'console_scripts': [
-            'commandname = app:main'
+            'statsmodels = statsmodels:main'
         ]
     },
     classifiers=[
