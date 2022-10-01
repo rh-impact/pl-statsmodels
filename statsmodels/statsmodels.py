@@ -112,7 +112,7 @@ class StatsmodelsOLS(ChrisApp):
         Define the code to be run by this plugin app.
         """
         def get_dmatrix(inputfile, column):
-            y, X = dmatrices('Lottery ~ Literacy + Wealth + Region', data=inputfile, return_type='dataframe')
+            y, X = dmatrices(column, data=inputfile, return_type='dataframe')
             return y, X
 
         def find_csv_filenames( path_to_dir, suffix=".csv" ):
