@@ -69,7 +69,7 @@ where necessary.)
 """
 
 
-class Statsmodels(ChrisApp):
+class StatsmodelsOLS(ChrisApp):
     """
     An application that can fit an OLS model on the input (specified columns) and save output and results in output directory
     """
