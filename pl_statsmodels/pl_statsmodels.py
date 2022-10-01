@@ -15,7 +15,7 @@ from patsy import dmatrices
 from os import listdir
 
 Gstr_title = r"""
-                           _      _     
+                                        
     | |      | |                         | |    | |    
  ___| |_ __ _| |_ ___ _ __ ___   ___   __| | ___| |___ 
 / __| __/ _` | __/ __| '_ ` _ \ / _ \ / _` |/ _ \ / __|
