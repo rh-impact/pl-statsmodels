@@ -1,4 +1,4 @@
-from statsmodels.statsmodels import StatsmodelsOLS
+from pl_statsmodels.pl_statsmodels import StatsmodelsOLS
 
 
 def main():

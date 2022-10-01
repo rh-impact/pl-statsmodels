@@ -9,9 +9,10 @@
 #
 
 from chrisapp.base import ChrisApp
-import statsmodels as sm
+import statsmodels.api as sm
 import pandas as pd
 from patsy import dmatrices
+from os import listdir
 
 Gstr_title = r"""
                            _      _     
@@ -31,9 +32,9 @@ only <outputDir> -- and similarly for <in> <out> directories
 where necessary.)
 
     NAME
-       statsmodels
+       pl_statsmodels
     SYNOPSIS
-        docker run --rm fnndsc/pl-statsmodels statsmodels               \\
+        docker run --rm fnndsc/pl-statsmodels pl_statsmodels               \\
             [-h] [--help]                                               \\
             [--json]                                                    \\
             [--man]                                                     \\
@@ -47,10 +48,10 @@ where necessary.)
         * Bare bones execution
             docker run --rm -u $(id -u)                             \
                 -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
-                fnndsc/pl-statsmodels statsmodels                   \
+                fnndsc/pl-statsmodels pl_statsmodels                   \
                 /incoming /outgoing
     DESCRIPTION
-        `statsmodels` ...
+        `pl_statsmodels` ...
     ARGS
         [-h] [--help]
         If specified, show help message and exit.
@@ -126,7 +127,8 @@ class StatsmodelsOLS(ChrisApp):
         columns = options.columns
         print("Fitting OLS on '%s' and saving output to '%s'" % (inputdir, outputdir))
         
-        input_df = pd.read_csv(find_csv_filenames(input_dir)[0])
+        input_df = pd.read_csv("{}/{}".format(inputdir, find_csv_filenames(inputdir)[0]))
+        input_df = input_df.dropna()
         y, X = get_dmatrix(input_df, columns)
 
         mod = sm.OLS(y, X)
@@ -134,7 +136,7 @@ class StatsmodelsOLS(ChrisApp):
 
         res_summary = res.summary()
         with open("{}/result_summary.txt".format(outputdir), "w") as f:
-            f.write(res_summary)
+            f.write(str(res_summary))
 
     def show_man_page(self):
         """
