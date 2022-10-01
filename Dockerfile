@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.authors="FNNDSC <dbassey@redhat.com>" \
       org.opencontainers.image.title="A ChRIS statsmodels plugin app" \
       org.opencontainers.image.description="A ChRIS plugin to perform statsmodels operations"
 
-WORKDIR /usr/local/src/pl-statsmodels
+WORKDIR /usr/local/src/
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
