@@ -32,9 +32,9 @@ only <outputDir> -- and similarly for <in> <out> directories
 where necessary.)
 
     NAME
-       pl_statsmodels
+       statsmodels_tool
     SYNOPSIS
-        docker run --rm fnndsc/pl-statsmodels pl_statsmodels               \\
+        docker run --rm fnndsc/pl-statsmodels statsmodels_tool               \\
             [-h] [--help]                                               \\
             [--json]                                                    \\
             [--man]                                                     \\
@@ -48,10 +48,10 @@ where necessary.)
         * Bare bones execution
             docker run --rm -u $(id -u)                             \
                 -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
-                fnndsc/pl-statsmodels pl_statsmodels                   \
+                fnndsc/pl-statsmodels statsmodels_tool                   \
                 /incoming /outgoing
     DESCRIPTION
-        `pl_statsmodels` ...
+        `statsmodels_tool` ...
     ARGS
         [-h] [--help]
         If specified, show help message and exit.
@@ -125,7 +125,7 @@ class StatsmodelsOLS(ChrisApp):
         inputdir = options.inputdir
         outputdir = options.outputdir
         columns = options.columns
-        print("Fitting OLS on '%s' and saving output to '%s'" % (inputdir, outputdir))
+        print("Fitting OLS on '%s' (given columns: '%s') and saving output to '%s'" % (inputdir, columns, outputdir))
         
         input_df = pd.read_csv("{}/{}".format(inputdir, find_csv_filenames(inputdir)[0]))
         input_df = input_df.dropna()

@@ -3,8 +3,8 @@
 Dep. Variable:                Lottery   R-squared:                       0.338
 Model:                            OLS   Adj. R-squared:                  0.287
 Method:                 Least Squares   F-statistic:                     6.636
-Date:                Sat, 01 Oct 2022   Prob (F-statistic):           1.07e-05
-Time:                        12:21:09   Log-Likelihood:                -375.30
+Date:                Mon, 03 Oct 2022   Prob (F-statistic):           1.07e-05
+Time:                        07:59:03   Log-Likelihood:                -375.30
 No. Observations:                  85   AIC:                             764.6
 Df Residuals:                      78   BIC:                             781.7
 Df Model:                           6                                         

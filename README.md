@@ -5,12 +5,12 @@
 [![ci](https://github.com/FNNDSC/pl-statsmodels/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/pl-statsmodels/actions/workflows/ci.yml)
 
 `pl-statsmodels` is a [_ChRIS_](https://chrisproject.org/)
-_ds_ plugin which takes in ...  as input files and
-creates ... as output files.
+_ds_ plugin which takes in CSV data as input files and
+creates result summary of Ordinary Least Square fit as output files.
 
 ## Abstract
 
-...
+
 
 ## Installation
 
@@ -66,7 +66,7 @@ Mount the source code `statsmodels.py` into a container to try out changes witho
 docker run --rm -it --userns=host -u $(id -u):$(id -g) \
     -v $PWD/statsmodels.py:/usr/local/lib/python3.10/site-packages/statsmodels.py:ro \
     -v $PWD/in:/incoming:ro -v $PWD/out:/outgoing:rw -w /outgoing \
-    localhost/fnndsc/pl-statsmodels statsmodels /incoming /outgoing
+    localhost/fnndsc/pl-statsmodels statsmodels_tool /incoming /outgoing
 ```
 
 ### Testing
