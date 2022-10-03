@@ -40,6 +40,7 @@ Usage
         [--savejson <DIR>]
         [-v|--verbosity <level>]
         [--version]
+        [--columns] <columnsForOLS>
         <inputDir> <outputDir>
 
 
@@ -69,8 +70,8 @@ Arguments
     [--version]
     If specified, print version number and exit. 
 
-    [--langdetect]
-    If specified, print lang on image and exit.
+    [--columns]
+    [REQUIRED] Columns to be used as input for OLS. Refer: https://www.statsmodels.org/devel/gettingstarted.html for more information.
 
 
 Getting inline help is:
@@ -87,9 +88,10 @@ You need to specify input and output directories using the `-v` flag to `docker 
 
 .. code:: bash
 
-    docker run --rm -u $(id -u)                             \
-        -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
-        fnndsc/pl-statsmodels statsmodels_tool                        \
+    docker run --rm -u $(id -u)                                             \
+        -v $(pwd)/test_input:/incoming -v $(pwd)/test_output:/outgoing      \
+        fnndsc/pl-statsmodels statsmodels_tool                              \
+        --columns "Lottery ~ Literacy + Wealth + Region"                    \
         /incoming /outgoing
 
 
@@ -100,19 +102,22 @@ Build the Docker container:
 
 .. code:: bash
 
-    docker build -t local/pl-statsmodels .
+    docker build --tag pl-statsmodels -f ./Dockerfile
 
 Run unit tests:
 
 .. code:: bash
 
-    docker run --rm local/pl-statsmodels nosetests
+    docker run --rm pl-statsmodels nosetests
 
 Examples
 --------
 
-Put some examples here!
+Running docker container:
 
+.. code:: bash
+
+    docker run --rm -u $(id -u) -v $(pwd)/test_input:/incoming -v $(pwd)/test_output:/outgoing local/pl-statsmodels statsmodels_tool --columns "Lottery ~ Literacy + Wealth + Region" /incoming /outgoing
 
 .. image:: https://raw.githubusercontent.com/FNNDSC/cookiecutter-chrisapp/master/doc/assets/badge/light.png
     :target: https://chrisstore.co
