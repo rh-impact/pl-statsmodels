@@ -90,6 +90,19 @@ class StatsmodelsOLS(ChrisApp):
     MIN_GPU_LIMIT           = 0    # Override with the minimum number of GPUs as int
     MAX_GPU_LIMIT           = 0    # Override with the maximum number of GPUs as int
 
+    # Use this dictionary structure to provide key-value output descriptive information
+    # that may be useful for the next downstream plugin. For example:
+    #
+    # {
+    #   "finalOutputFile":  "final/file.out",
+    #   "viewer":           "genericTextViewer",
+    # }
+    #
+    # The above dictionary is saved when plugin is called with a ``--saveoutputmeta``
+    # flag. Note also that all file paths are relative to the system specified
+    # output directory.
+    OUTPUT_META_DICT = {}
+
     def define_parameters(self):
         """
         Define the CLI arguments accepted by this plugin app.
