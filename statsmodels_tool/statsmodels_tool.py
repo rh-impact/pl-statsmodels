@@ -34,7 +34,7 @@ where necessary.)
     NAME
        statsmodels_tool
     SYNOPSIS
-        docker run --rm fnndsc/pl-statsmodels statsmodels_tool               \\
+        docker run --rm fnndsc/pl-statsmodels statsmodels_tool          \\
             [-h] [--help]                                               \\
             [--json]                                                    \\
             [--man]                                                     \\
@@ -42,16 +42,18 @@ where necessary.)
             [--savejson <DIR>]                                          \\
             [-v <level>] [--verbosity <level>]                          \\
             [--version]                                                 \\
+            [--columns <COLUMNS>]                                       \\
             <inputDir>                                                  \\
             <outputDir>
     BRIEF EXAMPLE
         * Bare bones execution
             docker run --rm -u $(id -u)                             \
                 -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
-                fnndsc/pl-statsmodels statsmodels_tool                   \
+                fnndsc/pl-statsmodels statsmodels_tool              \
+                --columns "Lottery ~ Literacy + Wealth + Region"    \
                 /incoming /outgoing
     DESCRIPTION
-        `statsmodels_tool` ...
+        `statsmodels_tool` takes in CSV data as input files and creates result summary of Ordinary Least Square fit as output files.
     ARGS
         [-h] [--help]
         If specified, show help message and exit.
@@ -67,6 +69,8 @@ where necessary.)
         Verbosity level for app. Not used currently.
         [--version]
         If specified, print version number and exit.
+        [--columns <COLUMNS>]
+        Columns to be used as input for OLS. Refer: https://www.statsmodels.org/devel/gettingstarted.html for more information.
 """
 
 
@@ -85,19 +89,6 @@ class StatsmodelsOLS(ChrisApp):
     MIN_MEMORY_LIMIT        = 8000  # Override with memory MegaByte (MB) limit as int
     MIN_GPU_LIMIT           = 0    # Override with the minimum number of GPUs as int
     MAX_GPU_LIMIT           = 0    # Override with the maximum number of GPUs as int
-
-    # Use this dictionary structure to provide key-value output descriptive information
-    # that may be useful for the next downstream plugin. For example:
-    #
-    # {
-    #   "finalOutputFile":  "final/file.out",
-    #   "viewer":           "genericTextViewer",
-    # }
-    #
-    # The above dictionary is saved when plugin is called with a ``--saveoutputmeta``
-    # flag. Note also that all file paths are relative to the system specified
-    # output directory.
-    OUTPUT_META_DICT = {}
 
     def define_parameters(self):
         """
