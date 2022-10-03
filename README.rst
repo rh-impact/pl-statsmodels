@@ -25,7 +25,7 @@ Description
 -----------
 
 
-``statsmodels`` is a *ChRIS ds-type* application that takes in images as  files
+``pl_statsmodels`` is a *ChRIS ds-type* application that takes in images as  files
 and produces text.
 
 
@@ -34,7 +34,7 @@ Usage
 
 .. code::
 
-    docker run --rm fnndsc/pl-statsmodels statsmodels
+    docker run --rm fnndsc/pl-statsmodels pl_statsmodels
         [-h|--help]
         [--json] [--man] [--meta]
         [--savejson <DIR>]
@@ -77,7 +77,7 @@ Getting inline help is:
 
 .. code:: bash
 
-    docker run --rm fnndsc/pl-statsmodels statsmodels --man
+    docker run --rm fnndsc/pl-statsmodels pl_statsmodels --man
 
 Run
 ~~~
@@ -89,7 +89,7 @@ You need to specify input and output directories using the `-v` flag to `docker 
 
     docker run --rm -u $(id -u)                             \
         -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
-        fnndsc/pl-statsmodels statsmodels                        \
+        fnndsc/pl-statsmodels pl_statsmodels                        \
         /incoming /outgoing
 
 
