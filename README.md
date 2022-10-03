@@ -10,7 +10,7 @@ creates result summary of Ordinary Least Square fit as output files.
 
 ## Abstract
 
-
+An application that takes CSV files as input and fits an OLS model on it. The result summary of the OLS fit is stored in output folder.
 
 ## Installation
 
@@ -21,63 +21,24 @@ run from either within _ChRIS_ or the command-line.
 
 ## Local Usage
 
-To get started with local command-line usage, use [Apptainer](https://apptainer.org/)
-(a.k.a. Singularity) to run `pl-statsmodels` as a container:
+1. Building container image using `podman`/`docker`:
 
 ```shell
-singularity exec docker://fnndsc/pl-statsmodels statsmodels [--args values...] input/ output/
+docker build --tag pl-statsmodels -f ./Dockerfile
 ```
 
-To print its available options, run:
+2. Add the CSV file on which the OLS models has to be fitted. [Reference](https://www.statsmodels.org/devel/gettingstarted.html)  
+3. Executing container image 
 
 ```shell
-singularity exec docker://fnndsc/pl-statsmodels statsmodels --help
+docker run --rm -u $(id -u) -v $(pwd)/test_input:/incoming -v $(pwd)/test_output:/outgoing local/pl-statsmodels statsmodels_tool --columns "Lottery ~ Literacy + Wealth + Region" /incoming /outgoing
 ```
-
-## Examples
-
-`statsmodels` requires two positional arguments: a directory containing
-input data, and a directory where to create output data.
-First, create the input directory and move input data into it.
-
-```shell
-mkdir incoming/ outgoing/
-mv some.dat other.dat incoming/
-singularity exec docker://fnndsc/pl-statsmodels:latest statsmodels [--args] incoming/ outgoing/
-```
-
-## Development
-
-Instructions for developers.
-
-### Building
-
-Build a local container image:
-
-```shell
-docker build -t localhost/fnndsc/pl-statsmodels .
-```
-
-### Running
-
-Mount the source code `statsmodels.py` into a container to try out changes without rebuild.
-
-```shell
-docker run --rm -it --userns=host -u $(id -u):$(id -g) \
-    -v $PWD/statsmodels.py:/usr/local/lib/python3.10/site-packages/statsmodels.py:ro \
-    -v $PWD/in:/incoming:ro -v $PWD/out:/outgoing:rw -w /outgoing \
-    localhost/fnndsc/pl-statsmodels statsmodels_tool /incoming /outgoing
-```
+**NOTE**: `--columns` is a required (string) parameter for the `statsmodels_tool` utility
 
 ### Testing
 
-Run unit tests using `pytest`.
-It's recommended to rebuild the image to ensure that sources are up-to-date.
-Use the option `--build-arg extras_require=dev` to install extra dependencies for testing.
-
 ```shell
-docker build -t localhost/fnndsc/pl-statsmodels:dev --build-arg extras_require=dev .
-docker run --rm -it localhost/fnndsc/pl-statsmodels:dev pytest
+docker run --rm pl-statsmodels nosetests
 ```
 
 ## Release
